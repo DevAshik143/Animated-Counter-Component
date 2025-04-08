@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Animated Counter with Box Animation</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<style type="text/css">
+  body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #4695C6, #6BA552);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.counter-container {
+  text-align: center;
+}
+
+.counter-box {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 40px 80px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  color: #fff;
+  transition: transform 0.3s ease;
+  animation: boxPop 0.3s ease;
+}
+
+#counter {
+  font-size: 4rem;
+  font-weight: bold;
+}
+
+p {
+  margin-top: 10px;
+  font-size: 1.2rem;
+}
+
+/* Box bounce animation */
+@keyframes boxPop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+</style>
+<body>
+  <div class="counter-container">
+    <div class="counter-box" id="box">
+      <h1 id="counter">1</h1>
+      <!-- <p>ASHIKUR RAHMAN</p> -->
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script type="text/javascript">
+    let count = 1;
+const counterEl = document.getElementById("counter");
+const boxEl = document.getElementById("box");
+
+setInterval(() => {
+  count++;
+  counterEl.textContent = count;
+
+  // Trigger box animation
+  boxEl.style.animation = 'none';  // reset animation
+  boxEl.offsetHeight;              // force reflow
+  boxEl.style.animation = 'boxPop 0.3s ease'; // re-apply
+}, 1000); // every 1 second
+
+  </script>
+</body>
+</html>
